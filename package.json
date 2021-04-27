@@ -1,0 +1,22 @@
+{
+  "scripts": {
+    "build-babel": "babel -d ./build ./src -s",
+    "clean": "rm -rf build && mkdir build",
+    "build": "yarn clean && yarn build-babel",
+    "start": "node ./build/index.js",
+    "dev": "nodemon --exec babel-node src/index.js",
+    "lint": "eslint ./src"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.12.5"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.13.14",
+    "@babel/core": "^7.13.15",
+    "@babel/node": "^7.13.13",
+    "@babel/preset-env": "^7.13.15",
+    "nodemon": "^2.0.7"
+  }
+}
