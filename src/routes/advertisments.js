@@ -1,7 +1,8 @@
 import { Router } from "express";
+import AdvertismentController from "../controllers/Advertisment";
 
 const router = Router();
 
-router.get("/", (req, res) => res.send("rota do anuncio"));
+router.get("/:id", AdvertismentController.find);
 
 export default router;
