@@ -17,16 +17,16 @@ yarn
 
 ## Para rodar o projeto em ambiente de desenvolvimento use:
 
-- yarn
-
-```sh
-yarn dev
-```
-
 - npm
 
 ```sh
 npm run dev
+```
+
+- yarn
+
+```sh
+yarn dev
 ```
 
 ## Para gerar a versão de build e rodar o projeto use:
