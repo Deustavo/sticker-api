@@ -8,26 +8,30 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const venom_bot_1 = require("venom-bot");
+const promises_1 = require("fs/promises");
+const mime_types_1 = __importDefault(require("mime-types"));
 function main(whats) {
     whats.onMessage((message) => __awaiter(this, void 0, void 0, function* () {
-        console.log(message);
-        if (message.type !== 'image') {
-            whats.sendText(message.from, message.body);
-        }
-        else {
-            yield whats.sendImageAsSticker(message.from, "https://scontent.fmii2-2.fna.fbcdn.net/v/t1.6435-9/175194816_2838672856385560_782809420865459703_n.jpg?_nc_cat=107&ccb=1-3&_nc_sid=09cbfe&_nc_eui2=AeEPp6uUzVwhvib8qnpolHR8Z8cCnRsTnk9nxwKdGxOeT89eAaX4BdXOF2dpekup0198iFRM6QqbW1qQOIYcoXFb&_nc_ohc=HNH2XaDY_xYAX9eUj_h&_nc_ht=scontent.fmii2-2.fna&oh=bc7f6e2efcc6df56a05a4a82e2ba62fd&oe=60B57DB9")
-                .then((result) => {
-                console.log('Result: ', result); //return object success
-            })
-                .catch((erro) => {
-                console.error('Error when sending: ', erro); //return object error
-            });
+        console.log(message.sender.name);
+        if (message.sender.name === 'inha') {
+            try {
+                const buffer = yield whats.decryptFile(message);
+                const fileName = `teste.${mime_types_1.default.extension(message.mimetype)}`;
+                yield promises_1.writeFile(fileName, buffer);
+                yield whats.sendImageAsSticker(message.from, fileName);
+            }
+            catch (error) {
+                console.error(error);
+            }
         }
     }));
 }
 (() => __awaiter(void 0, void 0, void 0, function* () {
-    let venom = yield venom_bot_1.create();
+    let venom = yield venom_bot_1.create("bot-sticker");
     main(venom);
 }))();
