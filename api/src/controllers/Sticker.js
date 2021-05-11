@@ -1,7 +1,9 @@
+import fs from "fs/promises";
+
 const StickerController = {
   send(req, res) {
     const { image, phoneNumber } = req.body;
-
+    //usar fs com promises pra receber a imagem e transformar em buffer
     console.log(image);
     console.log(phoneNumber);
 
