@@ -3,7 +3,9 @@ import AdvertismentController from "../controllers/Advertisment";
 
 const router = Router();
 
-router.get("/:id", AdvertismentController.find);
-router.post("/", AdvertismentController.create);
+const { find, create } = AdvertismentController;
+
+router.get("/:id", find);
+router.post("/", create);
 
 export default router;
