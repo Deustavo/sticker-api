@@ -16,7 +16,19 @@
     height: 100%;
 }
 
+.banner-title {
+    text-align: center;
+}
+
 .landing-page-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     background: #F7FCF9;
     width: 50%;
+}
+
+.form-input {
+    margin: 4px 0 12px 0;
 }
