@@ -1,4 +1,6 @@
-* { margin: 0; padding: 0; }
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+* { margin: 0; padding: 0; font-family: 'Inter', sans-serif;}
 
 .landing-page {
     display: flex;
@@ -16,7 +18,10 @@
     height: 100%;
 }
 
+.landing-page-banner img { width: 80% }
+
 .banner-title {
+    margin: 40px;
     text-align: center;
 }
 
@@ -29,6 +34,12 @@
     width: 50%;
 }
 
+.landing-page-form form {
+    width: 80%;
+}
+
 .form-input {
     margin: 4px 0 12px 0;
+    padding: 4px;
+    width: 100%;
 }
