@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { StickerController } from "../controllers/Sticker";
+import StickerController from "../controllers/Sticker"
 
 const router = Router();
 

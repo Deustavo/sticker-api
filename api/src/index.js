@@ -3,6 +3,8 @@ import routes from "./routes";
 import { connect, connection } from "mongoose";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
+import cors from "cors"
+
 dotenv.config();
 
 connect(process.env.MONGO_URI, {
@@ -14,6 +16,13 @@ connection.once("open", () => {
 });
 
 const app = express();
+
+app.use(express.json({limit: '50mb'}));
+app.use(express.urlencoded({limit: '50mb'}));
+
+app.use(cors({
+  origin: "http://localhost:3000"
+}))
 
 app.get("/", (req, res) => res.send("aloalo"));
 

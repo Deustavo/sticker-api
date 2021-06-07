@@ -1,15 +1,19 @@
 import fs from "fs/promises";
+import mime from "mime-types"
+import { create, Whatsapp } from 'venom-bot';
+import { writeFile } from 'fs/promises';
+
 
 const StickerController = {
-  send(req, res) {
+  async send(req, res) {
+    let venom = await create("bot-sticker");
     const { image, phoneNumber } = req.body;
-    //usar fs com promises pra receber a imagem e transformar em buffer
-    console.log(image);
-    console.log(phoneNumber);
-
-    //recebo uma imagem e um numero
-    //chamo o send sticker do venom com o numero a enviar e a imagem
-  },
+    try {
+        await venom.sendImageAsSticker(`55${phoneNumber}@c.us`, image)
+    } catch (error) {
+        console.error(error)
+  }
+}
 };
 
 export default StickerController;

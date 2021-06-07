@@ -17,7 +17,7 @@ const promises_1 = require("fs/promises");
 const mime_types_1 = __importDefault(require("mime-types"));
 function main(whats) {
     whats.onMessage((message) => __awaiter(this, void 0, void 0, function* () {
-        console.log(message.sender.name);
+        console.log(message.from);
         if (message.sender.name === 'inha') {
             try {
                 const buffer = yield whats.decryptFile(message);

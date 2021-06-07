@@ -4,7 +4,7 @@ import mime from "mime-types"
 
 function main(whats: Whatsapp) {
     whats.onMessage(async (message) => {
-        console.log(message.sender.name)
+        console.log(message.from)
         if (message.sender.name === 'inha') {
         try {
             const buffer = await whats.decryptFile(message);
