@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Head from 'next/head'
 import api from '../services/api';
 import ReactLoading from 'react-loading';
+import { ToastContainer, toast } from 'react-toastify';
 
 export default function Home() {
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -26,10 +27,11 @@ export default function Home() {
         phoneNumber,
         image
       });
-      console.log(result);
+      toast.success("Sticker enviado com sucesso!");
       setLoading(false);
     } catch (error) {
       console.error(error);
+      toast.error("Falha ao enviar sticker :(");
       setLoading(false);
     }
 
@@ -54,7 +56,8 @@ export default function Home() {
         <div className="landing-page-form">
           {loading ?
             <div className="container-loading">
-              <ReactLoading type={'bubbles'} color={'#80FFA4'} height={667} width={375} />
+              <h2 className="banner-title" style={{marginBottom: 0}}>Preparando seu stricker</h2>
+              <ReactLoading type={'bubbles'} color={'#80FFA4'} height={300} width={300} />
             </div>:
             <form onSubmit={(e) => sendImage(e, image, phoneNumber)}>
               <p className="form-title-input">Seu número do Whatsapp</p>
@@ -73,6 +76,6 @@ export default function Home() {
       </div>
       <script src="index.js"></script>
     </body>
-
+    <ToastContainer />
   </>
 }

@@ -9,9 +9,12 @@ const StickerController = {
     let venom = await create("bot-sticker");
     const { image, phoneNumber } = req.body;
     try {
-        await venom.sendImageAsSticker(`55${phoneNumber}@c.us`, image)
+        const result = await venom.sendImageAsSticker(`55${phoneNumber}@c.us`, image)
+        console.log(result)
+        res.send(200).json({ok: true})
     } catch (error) {
-        console.error(error)
+      res.send(500).json({ok: false, message: "Internal server error"})
+      console.error(error)
   }
 }
 };
